@@ -6,16 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    [SerializeField] private float gameSpeed;
     private Scene currentScene;
-    private int score;
+
+    [SerializeField] private float gameSpeed;
+    private float minSpeed = 5f;
+    private float score;
+    private float fixedScoreIncrease = 0.01f;
+    private float fixedSpeedDecrease = 0.05f;
 
     public float GameSpeed
     {
         get => gameSpeed;
         set => gameSpeed = value;
     }
-    public int Score { get => score; }
+    public float Score { get => score; }
 
 
     void Awake()
@@ -37,11 +41,24 @@ public class GameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
     }
 
+    private void FixedUpdate()
+    {
+        score += fixedScoreIncrease * gameSpeed;
+
+        if (gameSpeed < minSpeed)
+        {
+            gameSpeed = minSpeed;
+        }
+        else
+        {
+            gameSpeed -= fixedSpeedDecrease;
+        }
+    }
     public void Defeat()
     {
         if (!(currentScene.name == "Main Scene")) return;
 
-        GameSpeed = 0;
+        gameSpeed = 0;
         SceneManager.LoadScene("Game Over Scene");
     }
 
@@ -49,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         if (!(currentScene.name == "Start Scene")) return;
 
+        score = 0;
         SceneManager.LoadScene("Main Scene");
     }
 }
