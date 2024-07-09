@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,11 @@ public class GameManager : MonoBehaviour
     private Scene currentScene;
 
     [SerializeField] private float gameSpeed;
-    private float minSpeed = 5f;
+    [SerializeField] private int updateInterval;
     private float score;
-    private float fixedScoreIncrease = 0.01f;
-    private float fixedSpeedDecrease = 0.05f;
+    private readonly float minSpeed = 5f;
+    private readonly float fixedScoreIncrease = 0.1f;
+    private readonly float fixedSpeedDecrease = 0.5f;
 
     public float GameSpeed
     {
@@ -39,12 +41,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
+        StartCoroutine(StatsUpdate());
     }
 
-    private void FixedUpdate()
+   
+    private IEnumerator StatsUpdate()
     {
-        score += fixedScoreIncrease * gameSpeed;
+        while (true)
+        {
+            yield return new WaitForSeconds(updateInterval);
+            ScoreUpdate();
+            SpeedUpdate();
+        }
+    }
 
+    private void SpeedUpdate()
+    {
         if (gameSpeed < minSpeed)
         {
             gameSpeed = minSpeed;
@@ -54,6 +66,9 @@ public class GameManager : MonoBehaviour
             gameSpeed -= fixedSpeedDecrease;
         }
     }
+
+    private void ScoreUpdate() => score += fixedScoreIncrease * gameSpeed;
+
     public void Defeat()
     {
         if (!(currentScene.name == "Main Scene")) return;
