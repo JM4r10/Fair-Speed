@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] obstaclePrefabs;
+    [SerializeField] GameObject[] interactivePrefabs;
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] List<GameObject> obstaclesInScene = new();
     [SerializeField] private int minSpawnTime, maxSpawnTime;
@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     }
     private List<GameObject> CreateInactiveObjects(List<GameObject> oBList)
     {
-        foreach (GameObject obstaclePrefab in obstaclePrefabs)
+        foreach (GameObject obstaclePrefab in interactivePrefabs)
         {
             GameObject obstacleOb = Instantiate(obstaclePrefab, transform.position, transform.rotation);
             oBList.Add(obstacleOb);
@@ -39,7 +39,16 @@ public class SpawnManager : MonoBehaviour
     private void SpawnRandomOb()
     {
         GameObject _randomOb = obstaclesInScene[Random.Range(0, obstaclesInScene.Count)];
-        Transform _randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Transform _randomSpawnPoint;
+
+        if (_randomOb.CompareTag("Power-up"))
+        {
+            _randomSpawnPoint = spawnPoints[0];
+        }
+        else
+        {
+            _randomSpawnPoint = spawnPoints[1];
+        }
 
         if (_randomOb.activeInHierarchy) return;
         _randomOb.transform.position = _randomSpawnPoint.position;
