@@ -41,10 +41,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
+        Debug.Log(currentScene.name);
         StartCoroutine(StatsUpdate());
     }
 
-   
+
     private IEnumerator StatsUpdate()
     {
         while (true)
@@ -77,11 +78,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Game Over Scene");
     }
 
-    public void StartGame()
-    {
-        if (!(currentScene.name == "Start Scene")) return;
 
+
+    public void LoadScene(string sceneName)
+    {
         score = 0;
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene(sceneName);
+
+
     }
 }
