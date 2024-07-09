@@ -4,50 +4,46 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [System.Serializable]
-    [SerializeField]
-    public class Pool
+    [SerializeField] GameObject[] obstaclePrefabs;
+    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] List<GameObject> obstaclesInScene = new();
+    [SerializeField] private int minSpawnTime, maxSpawnTime;
+
+    void Start()
     {
-        public GameObject prefab;
-        public string tag;
-        public int size;
+        obstaclesInScene = CreateInactiveObjects(obstaclesInScene);
+        StartCoroutine(RandomSpawn());
     }
-
-    [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private List<Pool> pools;
-    [SerializeField] private Dictionary<string, Queue<GameObject>> _poolDictionary;
-
-    private void Awake()
+    private List<GameObject> CreateInactiveObjects(List<GameObject> oBList)
     {
-
-        foreach (Pool _pool in pools)
+        foreach (GameObject obstaclePrefab in obstaclePrefabs)
         {
-            Queue<GameObject> _objectPool = new();
-
-            for (int i = 0; i < _pool.size; i++)
-            {
-                GameObject _ob = _pool.prefab;
-                Instantiate(_ob);
-                _ob.SetActive(false);
-                _objectPool.Enqueue(_ob);
-            }
-
-            _poolDictionary.Add(_pool.tag, _objectPool);
+            GameObject obstacleOb = Instantiate(obstaclePrefab, transform.position, transform.rotation);
+            oBList.Add(obstacleOb);
+            obstacleOb.SetActive(false);
         }
 
+        return oBList;
     }
 
-    private GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
+    private IEnumerator RandomSpawn()
     {
-        GameObject objectSpawn = _poolDictionary[tag].Dequeue();
+        while (true)
+        {
+            int _spawnInterval = Random.Range(minSpawnTime, maxSpawnTime);
+            yield return new WaitForSeconds(_spawnInterval);
+            SpawnRandomOb();
+        }
+    }
 
-        if (objectSpawn.activeInHierarchy)
-            objectSpawn.SetActive(true);
-        objectSpawn.transform.position = position;
-        objectSpawn.transform.rotation = rotation;
+    private void SpawnRandomOb()
+    {
+        GameObject _randomOb = obstaclesInScene[Random.Range(0, obstaclesInScene.Count)];
+        Transform _randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        _poolDictionary[tag].Enqueue(objectSpawn);
+        if (_randomOb.activeInHierarchy) return;
+        _randomOb.transform.position = _randomSpawnPoint.position;
+        _randomOb.SetActive(true);
 
-        return objectSpawn;
     }
 }

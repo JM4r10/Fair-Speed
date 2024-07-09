@@ -44,17 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b310bb6b7578aa4aaae2d07225944a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
-  pools:
-  - prefab: {fileID: 0}
-    tag: Power-up
-    size: 1
-  - prefab: {fileID: 0}
-    tag: Oil_Barrier
-    size: 1
-  - prefab: {fileID: 0}
-    tag: Concrete_barrier
-    size: 1
-  - prefab: {fileID: 0}
-    tag: Metal_barrier
-    size: 1
+  obstaclePrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  obstaclesInScene: []
+  minSpawnTime: 0
+  maxSpawnTime: 0
