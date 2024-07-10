@@ -119,4 +119,4 @@ MonoBehaviour:
   interactiveObs: []
   minSpawnTime: 2
   maxSpawnTime: 4
-  minPoints: 50
+  minPoints: 25

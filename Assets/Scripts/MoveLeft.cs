@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
 {
-    void Update() => transform.Translate(GameManager.Instance.GameSpeed * Time.deltaTime * Vector3.left, Space.World);
+    void Update() => transform.Translate(GameManager.Instance.GameSpeed * Time.deltaTime * Vector3.back, Space.World);
 }
