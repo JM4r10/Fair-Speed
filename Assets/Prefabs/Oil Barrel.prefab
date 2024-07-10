@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2647989605271098749}
   - component: {fileID: 7305623307079430441}
   - component: {fileID: 6125647979450541607}
+  - component: {fileID: 5151708853653504543}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Obstacle
@@ -196,6 +197,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 52e26d33b8b52409482f49a688e7110f, type: 3}
+--- !u!54 &5151708853653504543
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228576722578091291}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 114
+  m_CollisionDetection: 0
 --- !u!1 &7111471591897924096
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +223,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8948549970904003959}
   - component: {fileID: -1983417913345133037}
-  - component: {fileID: 1875117702757442388}
+  - component: {fileID: 2929533141677065502}
+  - component: {fileID: 7384508887241680235}
   m_Layer: 0
   m_Name: Oil Barrel
   m_TagString: Obstacle
@@ -243,7 +261,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f08820a71e591448d3aec2e3e5eb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1875117702757442388
+--- !u!65 &2929533141677065502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111471591897924096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7337496, y: 0.64367545, z: 0.6176801}
+  m_Center: {x: -0.08, y: 0.07346642, z: -0.23}
+--- !u!54 &7384508887241680235
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

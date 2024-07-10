@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4858452580786032204}
   - component: {fileID: 2593271629001683049}
+  - component: {fileID: 4627865113151503983}
+  - component: {fileID: 847993315032341873}
   m_Layer: 0
   m_Name: Concrete_Barrier Rotated
   m_TagString: Obstacle
@@ -45,6 +47,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f08820a71e591448d3aec2e3e5eb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &4627865113151503983
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218534097012241618}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 114
+  m_CollisionDetection: 0
+--- !u!65 &847993315032341873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218534097012241618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.64653087, z: 0.46949196}
+  m_Center: {x: 0, y: 0.66202533, z: 0.0020742416}
 --- !u!1001 &5154453436699387478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,27 +133,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 403fad6894da0a5479228d78a946c929, type: 3}
---- !u!1 &227966918900678444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4945421483630352762, guid: 403fad6894da0a5479228d78a946c929, type: 3}
-  m_PrefabInstance: {fileID: 5154453436699387478}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &6344391977032247291
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227966918900678444}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 114
-  m_CollisionDetection: 0
 --- !u!4 &604104780740896150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5758549281458815936, guid: 403fad6894da0a5479228d78a946c929, type: 3}

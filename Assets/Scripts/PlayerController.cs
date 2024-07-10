@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Jump();
+        RunFasterAnimation();
     }
 
     private void Jump()
@@ -37,6 +38,9 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
         }
     }
+
+    private void RunFasterAnimation() => playerAnim.SetFloat("MovX", GameManager.Instance.GameSpeed);
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
