@@ -79,8 +79,6 @@ public class GameManager : MonoBehaviour
 
     public void Defeat()
     {
-        if (!(currentScene.name == "Main Scene")) return;
-
         StopAllCoroutines();
         gameSpeed = 0;
         gameOver = true;
