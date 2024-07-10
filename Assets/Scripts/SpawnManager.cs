@@ -6,24 +6,24 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject[] interactivePrefabs;
     [SerializeField] Transform[] spawnPoints;
-    [SerializeField] List<GameObject> obstaclesInScene = new();
-    [SerializeField] private int minSpawnTime, maxSpawnTime;
+    [SerializeField] List<GameObject> interactiveObs = new();
+    [SerializeField] private int minSpawnTime, maxSpawnTime, minPoints;
 
     void Start()
     {
-        obstaclesInScene = CreateInactiveObjects(obstaclesInScene);
+        interactiveObs = InstantiateObs(interactiveObs);
         StartCoroutine(RandomSpawn());
     }
-    private List<GameObject> CreateInactiveObjects(List<GameObject> oBList)
+    private List<GameObject> InstantiateObs(List<GameObject> interactiveObs)
     {
-        foreach (GameObject obstaclePrefab in interactivePrefabs)
+        foreach (GameObject interactivePrefab in interactivePrefabs)
         {
-            GameObject obstacleOb = Instantiate(obstaclePrefab, transform.position, transform.rotation);
-            oBList.Add(obstacleOb);
-            obstacleOb.SetActive(false);
+            GameObject interactiveOb = Instantiate(interactivePrefab, transform.position, transform.rotation);
+            interactiveObs.Add(interactiveOb);
+            interactiveOb.SetActive(false);
         }
 
-        return oBList;
+        return interactiveObs;
     }
 
     private IEnumerator RandomSpawn()
@@ -31,28 +31,40 @@ public class SpawnManager : MonoBehaviour
         while (true)
         {
             int _spawnInterval = Random.Range(minSpawnTime, maxSpawnTime);
+
             yield return new WaitForSeconds(_spawnInterval);
-            SpawnRandomOb();
+
+            var randomObj = ActivateRandomOb();
+            SpawnAtRandomPos(randomObj);
         }
     }
 
-    private void SpawnRandomOb()
+    private void SpawnAtRandomPos(GameObject randomOb)
     {
-        GameObject _randomOb = obstaclesInScene[Random.Range(0, obstaclesInScene.Count)];
-        Transform _randomSpawnPoint;
+        if (randomOb is null) return;
 
-        if (_randomOb.CompareTag("Power-up"))
+        Transform spawnPoint;
+
+        if (randomOb.CompareTag("Power-up"))
         {
-            _randomSpawnPoint = spawnPoints[0];
+            spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         }
         else
         {
-            _randomSpawnPoint = spawnPoints[1];
+            spawnPoint = spawnPoints[1];
         }
 
-        if (_randomOb.activeInHierarchy) return;
-        _randomOb.transform.position = _randomSpawnPoint.position;
-        _randomOb.SetActive(true);
+        randomOb.transform.position = spawnPoint.position;
+    }
+
+    private GameObject ActivateRandomOb()
+    {
+        GameObject objToSpawn = GameManager.Instance.Score < minPoints ? interactiveObs[0] : interactiveObs[Random.Range(0, interactiveObs.Count)];
+
+        if (objToSpawn.activeInHierarchy) return null;
+
+        objToSpawn.SetActive(true);
+        return objToSpawn;
 
     }
 }

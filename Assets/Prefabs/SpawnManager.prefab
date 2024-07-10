@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8736314444478110481}
   m_Layer: 0
-  m_Name: PowerUpSpawnPosition
+  m_Name: Floating Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6226644022133624547}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.76, y: 2.96, z: -14.779999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978010000266591793}
   m_Layer: 0
-  m_Name: ObstacleSpawnPosition
+  m_Name: Grounded Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6346245369032510461}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.36, y: 0.21999997, z: -14.779999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,12 +110,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactivePrefabs:
   - {fileID: 8804157125240659461, guid: 05c05fb9eb37100429a8796023c63348, type: 3}
-  - {fileID: 1833261705999724927, guid: c7b10f04f40e3dc4c80989fbcd587dae, type: 3}
+  - {fileID: 2218534097012241618, guid: edfa28c2059fb5e4480c54874b3c8faf, type: 3}
   - {fileID: 7111471591897924096, guid: 774d56386be284f47bf4a4090daf666e, type: 3}
   - {fileID: 1876974882665282459, guid: eb201003487787e41b492c6e81e4b76a, type: 3}
   spawnPoints:
   - {fileID: 8736314444478110481}
   - {fileID: 1978010000266591793}
-  obstaclesInScene: []
-  minSpawnTime: 1
-  maxSpawnTime: 3
+  interactiveObs: []
+  minSpawnTime: 2
+  maxSpawnTime: 4
+  minPoints: 50
