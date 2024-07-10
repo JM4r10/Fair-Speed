@@ -9,7 +9,7 @@ public class RepeatBackground : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
-        repeatWidth = GetComponent<BoxCollider>().size.z * 0.5f;
+        repeatWidth = GetComponent<BoxCollider>().size.z / 2;
     }
 
     private void Update() => ReturnToOriginalPos();
@@ -17,8 +17,10 @@ public class RepeatBackground : MonoBehaviour
 
     private void ReturnToOriginalPos()
     {
-        if (transform.position.z >= startPos.z - repeatWidth) return;
-        transform.position = startPos;
+        if (transform.position.z < startPos.z - repeatWidth)
+        {
+            transform.position = startPos;
+        }
     }
 
 }

@@ -10,10 +10,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     [SerializeField] private static bool isGravityModified;
 
+    private AudioSource playerAudioSource;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip powerupSound;
+    [SerializeField] AudioClip uffSound;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
+        playerAudioSource = playerRb.GetComponent<AudioSource>();
         if (!isGravityModified)
         {
             Physics.gravity *= gravityForce;
@@ -33,7 +39,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            playerAnim.SetBool("isJump", true);
+            playerAudioSource.PlayOneShot(jumpSound, 0.3f);
+            playerAnim.SetBool("isJump", true);    
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
@@ -73,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
+        playerAudioSource.PlayOneShot(uffSound, 1f);
         playerAnim.SetBool("isDie", true);
         GameManager.Instance.GameSpeed = 0;
         GameManager.Instance.gameOver = true;
@@ -84,6 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Power-up"))
         {
+            playerAudioSource.PlayOneShot(powerupSound, 1f);
             other.gameObject.SetActive(false);
             GameManager.Instance.GameSpeed += powerupSpeed;
         }
