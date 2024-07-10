@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (GameManager.Instance.gameOver) return;
+        if (GameManager.Instance.GameOver) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DeathSequence());
         }
     }
-
     private void StopSpawnManager()
     {
         SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
@@ -75,7 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnim.SetBool("isDie", true);
         GameManager.Instance.GameSpeed = 0;
-        GameManager.Instance.gameOver = true;
+        GameManager.Instance.GameOver = true;
         yield return new WaitForSeconds(timeForLoad);
         GameManager.Instance.Defeat();
     }

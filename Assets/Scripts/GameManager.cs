@@ -10,15 +10,19 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private Scene currentScene;
 
+    [SerializeField]private bool gameOver;
     [SerializeField] private float gameSpeed;
-    [SerializeField] private int updateInterval;
     [SerializeField] private float score;
+    [SerializeField] private int updateInterval;
     private readonly float minSpeed = 5f;
     private readonly float fixedScoreIncrease = 0.1f;
     private readonly float fixedSpeedDecrease = 0.5f;
-    public bool gameOver;
 
-
+    public bool GameOver
+    {
+        get => gameOver;
+        set => gameOver = value;
+    }
 
     public float GameSpeed
     {
@@ -82,8 +86,6 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         SceneManager.LoadScene("Game Over Scene");
     }
-
-
 
     public void LoadScene(string sceneName)
     {
