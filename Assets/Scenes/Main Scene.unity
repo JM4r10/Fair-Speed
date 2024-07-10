@@ -426,6 +426,10 @@ PrefabInstance:
       propertyPath: uffSound
       value: 
       objectReference: {fileID: 8300000, guid: 3969d973b9bf0834884bfc7935cbc3e4, type: 3}
+    - target: {fileID: 5802726415829309887, guid: c41f22047e7a70d45a1adba93088dea1, type: 3}
+      propertyPath: timeForLoad
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6797701121211777196, guid: c41f22047e7a70d45a1adba93088dea1, type: 3}
       propertyPath: m_Name
       value: Player
