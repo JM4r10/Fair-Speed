@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -11,10 +12,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float gameSpeed;
     [SerializeField] private int updateInterval;
-    private float score;
+    [SerializeField] private float score;
     private readonly float minSpeed = 5f;
     private readonly float fixedScoreIncrease = 0.1f;
     private readonly float fixedSpeedDecrease = 0.5f;
+    public bool gameOver;
+
+
 
     public float GameSpeed
     {
@@ -45,10 +49,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StatsUpdate());
     }
 
-
     private IEnumerator StatsUpdate()
     {
-        while (true)
+        while (!gameOver)
         {
             yield return new WaitForSeconds(updateInterval);
             ScoreUpdate();
@@ -74,7 +77,9 @@ public class GameManager : MonoBehaviour
     {
         if (!(currentScene.name == "Main Scene")) return;
 
+        StopAllCoroutines();
         gameSpeed = 0;
+        gameOver = true;
         SceneManager.LoadScene("Game Over Scene");
     }
 
@@ -84,7 +89,5 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         SceneManager.LoadScene(sceneName);
-
-
     }
 }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6366050200172690844}
   - component: {fileID: 127001497228385506}
   - component: {fileID: 5115069519830454782}
+  - component: {fileID: 3663988648489417453}
   m_Layer: 0
   m_Name: Oil
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3663988648489417453
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506106614000654562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 186070302199065605, guid: 4b4fe8307923e46acb10ba551fa0995d, type: 3}
 --- !u!1 &4228576722578091291
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,9 +109,10 @@ GameObject:
   - component: {fileID: 3106416133901496959}
   - component: {fileID: 2647989605271098749}
   - component: {fileID: 7305623307079430441}
+  - component: {fileID: 6125647979450541607}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,6 +182,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6125647979450541607
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228576722578091291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 52e26d33b8b52409482f49a688e7110f, type: 3}
 --- !u!1 &7111471591897924096
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,8 +205,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8948549970904003959}
-  - component: {fileID: 761426052211213517}
-  - component: {fileID: 5421715369961489339}
+  - component: {fileID: -1983417913345133037}
+  - component: {fileID: 1875117702757442388}
   m_Layer: 0
   m_Name: Oil Barrel
   m_TagString: Obstacle
@@ -201,29 +231,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &761426052211213517
-BoxCollider:
+--- !u!114 &-1983417913345133037
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7111471591897924096}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.1330466, y: 0.2592026, z: 3.9437299}
-  m_Center: {x: -0.54042125, y: -0.3703987, z: 0.76573014}
---- !u!65 &5421715369961489339
-BoxCollider:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f08820a71e591448d3aec2e3e5eb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1875117702757442388
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7111471591897924096}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4342086, y: 0.7124878, z: 1}
-  m_Center: {x: -0.6530212, y: 0.118199475, z: 0}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 114
+  m_CollisionDetection: 0

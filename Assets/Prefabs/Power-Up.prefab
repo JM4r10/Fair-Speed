@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 1966237661736246886}
   - component: {fileID: 8639180702944493942}
   - component: {fileID: 7288673564805433489}
+  - component: {fileID: -4688812935923070975}
   m_Layer: 0
   m_Name: Power-Up
   m_TagString: Power-up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2945525749183599315
 Transform:
   m_ObjectHideFlags: 0
@@ -92,9 +93,21 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8804157125240659461}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4688812935923070975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804157125240659461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f08820a71e591448d3aec2e3e5eb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

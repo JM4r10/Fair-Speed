@@ -4,50 +4,86 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float normalSpeed = 5f;
-    public float powerupSpeed = 10f;
-    public float powerupDuration = 5f;
-    public float jumpForce = 5f;
-    private float currentSpeed;
-    private bool isOnGround = true;
+    [SerializeField] private float powerupSpeed, jumpForce, timeForLoad, gravityForce;
+    [SerializeField] private bool isOnGround = true;
+    private Animator playerAnim;
     private Rigidbody playerRb;
+    [SerializeField] private static bool isGravityModified;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-        currentSpeed = normalSpeed;
+        playerAnim = GetComponent<Animator>();
+        if (!isGravityModified)
+        {
+            Physics.gravity *= gravityForce;
+            isGravityModified = true;
+        }
     }
 
     void Update()
     {
-        // Movimiento constante hacia la derecha
-        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+        Jump();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround){
+    private void Jump()
+    {
+        if (GameManager.Instance.gameOver) return;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            playerAnim.SetBool("isJump", true);
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
     }
-     private void OnCollisionEnter(Collision collision) {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                isOnGround = true;
-            }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            playerAnim.SetBool("isJump", false);
+            isOnGround = true;
         }
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            StopSpawnManager();
+            StopObjects();
+            StartCoroutine(DeathSequence());
+        }
+    }
+
+    private void StopSpawnManager()
+    {
+        SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
+        spawnManager.enabled = false;
+    }
+
+    private void StopObjects()
+    {
+        MoveFoward[] moveFowards = FindObjectsOfType<MoveFoward>();
+        foreach (MoveFoward moveFowardScript in moveFowards)
+        {
+            moveFowardScript.enabled = false;
+        }
+    }
+
+    private IEnumerator DeathSequence()
+    {
+        playerAnim.SetBool("isDie", true);
+        GameManager.Instance.GameSpeed = 0;
+        GameManager.Instance.gameOver = true;
+        yield return new WaitForSeconds(timeForLoad);
+        GameManager.Instance.Defeat();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Powerup"))
+        if (other.CompareTag("Power-up"))
         {
-            Destroy(other.gameObject);
-            StartCoroutine(PowerupRoutine());
+            other.gameObject.SetActive(false);
+            GameManager.Instance.GameSpeed += powerupSpeed;
         }
+
     }
 
-    private IEnumerator PowerupRoutine()
-    {
-        currentSpeed = powerupSpeed;
-        yield return new WaitForSeconds(powerupDuration);
-        currentSpeed = normalSpeed;
-    }
 }

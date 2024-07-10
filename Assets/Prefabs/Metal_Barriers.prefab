@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1876974882665282439}
   - component: {fileID: 1876974882665282438}
   - component: {fileID: 1876974882665282437}
-  - component: {fileID: 1876974882665282436}
+  - component: {fileID: -8612060670214863138}
+  - component: {fileID: -3005383795552200565}
   m_Layer: 0
   m_Name: Metal_Barriers
   m_TagString: Obstacle
@@ -62,7 +63,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0996919, y: 0.5014419, z: 1.7991242}
   m_Center: {x: 1.0003221, y: 0.24927905, z: 0.91839623}
---- !u!54 &1876974882665282436
+--- !u!114 &-8612060670214863138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876974882665282459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f08820a71e591448d3aec2e3e5eb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &-3005383795552200565
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,7 +89,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 114
   m_CollisionDetection: 0
 --- !u!1001 &1876974883779865100
 PrefabInstance:
